@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>submit_reverse (ADNS::State)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: submit_reverse(ipaddr, type[, qflags])     =&gt; ADNS::Query object
+ *
+ * Submit asynchronous request to reverse lookup address &lt;ipaddr&gt; using optional query flags &lt;qflags&gt;.
+ * Note: &lt;type&gt; can only be ADNS::RR::PTR or ADNS::RR::PTR_RAW  
+ */
+static VALUE cState_submit_reverse(int argc, VALUE argv[], VALUE self)
+{
+        VALUE query; /* return instance */
+        rb_adns_query_t *rb_adq_r = ALLOC(rb_adns_query_t);
+        const char *owner;
+    struct sockaddr_in addr;
+    adns_rrtype type;
+        adns_queryflags qflags = adns_qf_owner;
+        int idx, ecode;
+    
+        if (argc &lt; 2)
+                rb_raise(rb_eArgError, &quot;wrong number of arguments (%d for 2)&quot;, argc);
+        if (argc &gt; 3)
+                rb_raise(rb_eArgError, &quot;excess number of arguments (%d for 2)&quot;, argc);
+    CHECK_TYPE(argv[0], T_STRING);
+    CHECK_TYPE(argv[1], T_FIXNUM);
+    if (argc == 3)
+        CHECK_TYPE(argv[2], T_FIXNUM);
+        owner = STR2CSTR(argv[0]);
+        type = FIX2INT(argv[1]);
+        if (argc == 3)
+                qflags |= FIX2INT(argv[2]);
+        switch(type)
+        {
+                case adns_r_ptr:
+                case adns_r_ptr_raw:
+                        break;
+                default:
+                rb_raise(rb_eArgError, &quot;invalid record type (PTR or PTR_RAW record expected)&quot;);
+        }
+        addr.sin_family = AF_INET;
+        ecode = inet_aton(owner, &amp;addr.sin_addr);
+        if (ecode == -1)
+                rb_raise(mADNS__eQueryError, &quot;invalid ip address&quot;);
+    Data_Get_Struct(self, rb_adns_state_t, rb_adq_r-&gt;rb_ads_r);
+    rb_adq_r-&gt;answer = Qnil;
+    query = Data_Wrap_Struct(mADNS__cQuery, cQuery_mark, cQuery_free, rb_adq_r);
+    rb_obj_call_init(query, 0, 0);
+    ecode = adns_submit_reverse(rb_adq_r-&gt;rb_ads_r-&gt;ads, (struct sockaddr *) &amp;addr,
+                                                                type, qflags, (void *)query, &amp;rb_adq_r-&gt;adq);
+        if (ecode)
+                rb_raise(mADNS__eError, strerror(ecode));
+    return query;
+}</pre>
+</body>
+</html>

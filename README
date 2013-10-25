@@ -1,0 +1,35 @@
+Introduction
+============
+Ruby interface to GNU adns asynchronous-capable DNS client library (http://gnu.org/software/adns/).
+
+Install
+=======
+$ sudo gem install adns-ruby
+Note: You must have GNU adns library installed with working c compiler, in other to build this module.
+
+Documentation and Examples
+==========================
+Examples are inside examples directory.
+Note: You must `cd' into adns-ruby-0.3 directory and browse doc/index.html using your favorite browser.
+$ rdoc
+
+
+Usage
+=====
+require 'rubygems'  # <-- FOR RUBY VERSION 1.8.x
+require 'adns'
+require 'pp'
+
+adns= ADNS::State.new   
+domain= "rubygems.org"
+
+qlist= {}
+qlist[adns.submit(domain, ADNS::RR::MX)] = 'MX'
+qlist[adns.submit(domain, ADNS::RR::A)] = 'A'
+qlist[adns.submit(domain, ADNS::RR::NS)] = 'NS'
+qlist[adns.submit(domain, ADNS::RR::SOA)] = 'SOA'
+
+for q, type in qlist
+	puts type.center(20, "*")
+	pp q.wait
+end

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ADNS::RR</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ADNS::RR</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/ext/adns/mod_adns_c.html">
+                ext/adns/mod_adns.c
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Module defines collection of adns resource records.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNKNOWN</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_unknown)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NONE</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_none)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">A</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_a)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NS_RAW</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_ns_raw)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NS</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_ns)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CNAME</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_cname)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SOA_RAW</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_soa_raw)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SOA</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_soa)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PTR_RAW</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_ptr_raw)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PTR</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_ptr)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HINFO</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_hinfo)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MX_RAW</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_mx_raw)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MX</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_mx)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TXT</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_txt)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RP_RAW</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_rp_raw)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RP</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_rp)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SRV</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_srv)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SRV_RAW</td>
+          <td>=</td>
+          <td class="context-item-value">INT2FIX(adns_r_srv_raw)</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

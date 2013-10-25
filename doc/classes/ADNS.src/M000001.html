@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>status_to_s (ADNS)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: status_to_s(status) =&gt; String
+ *
+ * Convert adns status code to string representation.
+ */
+static VALUE mADNS__status_to_s(VALUE self, VALUE a1)
+{
+        adns_status status;
+        const char *s;
+    
+        CHECK_TYPE(a1, T_FIXNUM);
+    status = FIX2INT(a1);
+        s = adns_strerror(status);
+        return CSTR2STR(s);
+}</pre>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>wait (ADNS::Query)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq: wait() =&gt; Hash
+ *
+ * Wait until answer is received.
+ */
+static VALUE cQuery_wait(int argc, VALUE argv[], VALUE self)
+{
+    rb_adns_query_t *rb_adq_r;
+    adns_answer *answer_r;
+    int ecode;
+        
+    Data_Get_Struct(self, rb_adns_query_t, rb_adq_r);
+        if (rb_adq_r-&gt;answer != Qnil)
+                return rb_adq_r-&gt;answer;
+        if (!rb_adq_r-&gt;adq)
+                rb_raise(mADNS__eQueryError, &quot;query invalidated&quot;);
+        ecode = adns_wait(rb_adq_r-&gt;rb_ads_r-&gt;ads, &amp;rb_adq_r-&gt;adq, &amp;answer_r, NULL);
+        if (ecode)
+        {
+                rb_adq_r-&gt;adq = NULL;
+                rb_adq_r-&gt;answer = Qnil;
+                rb_raise(mADNS__eError, strerror(ecode));
+        }
+        rb_adq_r-&gt;answer = rb_hash_new();
+        rb_hash_aset(rb_adq_r-&gt;answer, CSTR2SYM(&quot;type&quot;), INT2FIX(answer_r-&gt;type));
+        rb_hash_aset(rb_adq_r-&gt;answer, CSTR2SYM(&quot;owner&quot;), CSTR2STR(answer_r-&gt;owner));
+        rb_hash_aset(rb_adq_r-&gt;answer, CSTR2SYM(&quot;status&quot;), INT2FIX(answer_r-&gt;status));
+        rb_hash_aset(rb_adq_r-&gt;answer, CSTR2SYM(&quot;expires&quot;), INT2FIX(answer_r-&gt;expires));
+        rb_hash_aset(rb_adq_r-&gt;answer, CSTR2SYM(&quot;answer&quot;), parse_adns_answer(answer_r));
+        rb_adq_r-&gt;adq = NULL;
+        return rb_adq_r-&gt;answer;
+}</pre>
+</body>
+</html>
