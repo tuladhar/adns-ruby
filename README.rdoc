@@ -1,0 +1,32 @@
+== Description
+This module allows Ruby programs to interface with the GNU adns library (http://gnu.org/software/adns/).
+You must have the GNU adns library version >= 1.2 installed in order to build this module.
+
+== Installation
+gem install adns-ruby
+
+== Example 
+  require 'adns'
+  require 'pp'
+  
+  adns= ADNS::State.new   
+  domain= "rubygems.org"
+  
+  query_list= Hash.new
+  query_list[adns.submit(domain, ADNS::RR::MX)]= 'MX'
+  query_list[adns.submit(domain, ADNS::RR::A)]= 'A'
+  query_list[adns.submit(domain, ADNS::RR::NS)]= 'NS'
+  query_list[adns.submit(domain, ADNS::RR::SOA)]= 'SOA'
+  
+  for (query, rr) in query_list
+  	puts rr.center(20, "*")
+  	pp query.wait
+  end
+
+== More Examples
+adns-ruby examples are located in the examples/ directory in the gem installation path or you can visit
+github repository (http://github.com/tuladhar/adns-ruby) and checkout the examples/ directory.
+
+== Source Code
+The source code is available via git:
+	git clone git://github.com/tuladhar/adns-ruby
