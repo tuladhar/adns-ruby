@@ -1,7 +1,7 @@
 # Ruby interface to GNU adns asynchronous-capable DNS client library.
 Gem::Specification.new {|s|
 	s.name = 'adns-ruby'
-	s.version = '0.3'
+	s.version = '0.4'
 	s.date = '2013-10-25'
 	s.authors << 'Purushottam Tuladhar'
 	s.email = 'purshottam.tuladhar@gmail.com'
