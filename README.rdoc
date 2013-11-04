@@ -3,7 +3,7 @@ This module allows Ruby programs to interface with the GNU adns library (http://
 You must have the GNU adns library version >= 1.2 installed in order to build this module.
 
 == Installation
-gem install adns-ruby
+	gem install adns-ruby
 
 == Example 
   require 'adns'
@@ -23,10 +23,9 @@ gem install adns-ruby
   	pp query.wait
   end
 
-== More Examples
-adns-ruby examples are located in the examples/ directory in the gem installation path or you can visit
+== Examples
+More adns-ruby examples are located in the examples/ directory in the gem installation path or you can visit
 github repository (http://github.com/tuladhar/adns-ruby) and checkout the examples/ directory.
 
 == Source Code
-The source code is available via git:
-	git clone git://github.com/tuladhar/adns-ruby
+	git clone https://github.com/tuladhar/adns-ruby
