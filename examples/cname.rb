@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 # This file is part of adns-ruby library
 
-require 'rubygems'
+
 require 'adns'
 require 'pp'
 
