@@ -1,2 +1,6 @@
 Fri Oct 25 16:53:30 NPT 2013 Purushottam Tuladhar <purshottam.tuladhar@gmail.com>
 	* Initial public release (adns-ruby-beta-0.3)
+
+Mon Nov  4 19:06:38 NPT 2013 Purushottam Tuladhar <purshottam.tuladhar@gmail.com>
+	* Fixed mod_adns.c code indentation.
+	* Removed 'require rubygems' from examples/ and adns.rb.
