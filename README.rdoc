@@ -3,7 +3,7 @@ This module allows Ruby programs to interface with the GNU adns library (http://
 You must have the GNU adns library version >= 1.2 installed in order to build this module.
 
 == Installation
-	gem install adns-ruby
+  gem install adns-ruby
 
 == Example 
   require 'adns'
