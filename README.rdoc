@@ -23,9 +23,9 @@ You must have the GNU adns library version >= 1.2 installed in order to build th
   	pp query.wait
   end
 
-== Examples
-More adns-ruby examples are located in the examples/ directory in the gem installation path or you can visit
-github repository (http://github.com/tuladhar/adns-ruby) and checkout the examples/ directory.
+== More Examples
+For more examples, you can browse the examples/ directory in the adns-ruby gem installation path or you can visit
+the github repository (http://github.com/tuladhar/adns-ruby) and browse the examples/ directory.
 
 == Source Code
-	git clone https://github.com/tuladhar/adns-ruby
+  git clone https://github.com/tuladhar/adns-ruby
